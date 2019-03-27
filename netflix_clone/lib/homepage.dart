@@ -110,7 +110,22 @@ class HomeView extends StatelessWidget {
                   makePopularWidget("Popular on Netflix"),
                   makePopularWidget("Trending Now"),
                   makeContinueWatching("Continue Watching for Kalle"),
-                  bannerMovie()
+                  bannerMovie(),
+                  makeNetflixOrig('NETFLIX ORIGINALS >'),
+                  makePopularWidget("Watch It Again"),
+                  makePopularWidget("New Releases"),
+                  makePopularWidget("US Crime TV Programmes"),
+                  makePopularWidget("American Programmes"),
+                  makePopularWidget("Comedies"),
+                  makePopularWidget("Romance Programmes"),
+                  makePopularWidget("US Dysfunctional-family TV Programmes"),
+                  makePopularWidget("European Films & Programmes"),
+                  makePopularWidget("US Teen TV Programmes"),
+                  makePopularWidget("Top Picks For Kalle"),
+                  makePopularWidget("Documentaries"),
+                  makePopularWidget("US TV Drama"),
+                  makePopularWidget("Emotional Crime TV Programmes"),
+                  makePopularWidget("Ensemble TV Programmes"),
           ],
       ),
         )
@@ -174,6 +189,57 @@ class HomeView extends StatelessWidget {
     );
   }
 
+    Widget makeNetflixOrig(String title) {
+    return new Container(
+      padding: EdgeInsets.only(top: 30, left: 10),
+      height: 400,
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text(title, style: topMenuStyle),
+              ]
+            ),
+          ),
+          Container(
+            height: 350,
+            child: ListView(
+              padding: EdgeInsets.only(right: 6),
+              scrollDirection: Axis.horizontal,
+              //shrinkWrap: true,
+              children: makeOriginals()
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  int counter = 0;
+  List<Widget> makeOriginals() {
+    List<Container> movieList = [];
+    for (int i = 0; i < 6; i++) {
+      counter++;
+      movieList.add(new Container(
+        margin: EdgeInsets.only(right: 10, top: 10),
+        width: 200,
+        
+        decoration: new BoxDecoration(
+          image: new DecorationImage(
+          image: new AssetImage("lib/assets/" + counter.toString() + ".jpg"),
+            fit: BoxFit.fitHeight
+          ),
+        ),
+      ));
+      if (counter == 12) {
+        counter = 0;
+      }
+    }
+    return movieList;
+  }
+
   Widget makePopularWidget(String title) {
     return new Container(
       padding: EdgeInsets.only(left: 5, right: 5),
@@ -229,8 +295,6 @@ class HomeView extends StatelessWidget {
       ),
     );
   }
-
-  int counter = 0;
   List<Widget> makeContainers() {
     List<Container> movieList = [];
     for (int i = 0; i < 6; i++) {
