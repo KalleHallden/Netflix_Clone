@@ -7,7 +7,7 @@ class HomePage extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.black,
       ),
-      home: HomeView()
+      home: HomeView(),
     );
   }
 }
@@ -24,7 +24,7 @@ class HomeView extends StatelessWidget {
           child: ListView(
           children: <Widget>[
             Container(
-              height: 450,
+              height: 430,
               // color: Colors.blue,
               decoration: new BoxDecoration(
                       image: new DecorationImage(
@@ -61,7 +61,8 @@ class HomeView extends StatelessWidget {
                 ],
               ),
             ),
-                              Center(
+            Container(
+              padding: EdgeInsets.only(top: 20, bottom: 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
@@ -103,10 +104,56 @@ class HomeView extends StatelessWidget {
                         )
                       ],
                     ),
-                  )
+                  ),
+                  makePopularWidget("Popular on Netflix"),
+                  makePopularWidget("Trending Now")
           ],
       ),
         )
     );
+  }
+
+  Widget makePopularWidget(String title) {
+    return new Container(
+      padding: EdgeInsets.only(left: 5, right: 5),
+      height: 220,
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text(title, style: topMenuStyle),
+              ]
+            ),
+          ),
+          Container(
+            height: 200,
+            child: ListView(
+              padding: EdgeInsets.all(3),
+              scrollDirection: Axis.horizontal,
+              //shrinkWrap: true,
+              children: makeContainers()
+            ),
+          )
+        ],
+      ),
+    );
+  }
+  int counter = 0;
+  List<Widget> makeContainers() {
+    List<Container> movieList = [];
+    for (int i = 0; i < 6; i++) {
+      counter++;
+      movieList.add(new Container(
+        padding: EdgeInsets.all(5),
+        height: 200,
+        
+        child: Image(
+          image: AssetImage("lib/assets/" + counter.toString() + ".jpg"),
+        ),
+      ));
+    }
+    return movieList;
   }
 }

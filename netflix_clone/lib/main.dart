@@ -11,7 +11,7 @@ class Netflix extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.black,
       ),
-      home: NetflixTabBar()
+      home: NetflixTabBar(),
     );
   }
 }

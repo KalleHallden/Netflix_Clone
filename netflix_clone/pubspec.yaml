@@ -41,6 +41,18 @@ flutter:
     - lib/assets/starwars.jpg 
     - lib/assets/starwars1.jpg 
     - lib/assets/netflix.png
+    - lib/assets/1.jpg
+    - lib/assets/2.jpg
+    - lib/assets/3.jpg
+    - lib/assets/4.jpg
+    - lib/assets/5.jpg
+    - lib/assets/6.jpg
+    - lib/assets/7.jpg
+    - lib/assets/8.jpg
+    - lib/assets/9.jpg
+    - lib/assets/10.jpg
+    - lib/assets/11.jpg
+    - lib/assets/12.jpg
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
 
