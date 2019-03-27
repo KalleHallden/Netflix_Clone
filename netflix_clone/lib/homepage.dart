@@ -19,27 +19,42 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
-        color: Colors.red,
+        // color: Colors.red,
         child: Center(
           child: ListView(
           children: <Widget>[
             Container(
-              height: 500,
-              color: Colors.blue, // we can change to be backgroundimage instead
+              height: 450,
+              // color: Colors.blue,
+              decoration: new BoxDecoration(
+                      image: new DecorationImage(
+                        image: new AssetImage("lib/assets/starwars1.jpg"),
+                        fit: BoxFit.fill
+                        ),
+                    ), // we can change to be backgroundimage instead
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Center(
+                  Container(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
-                        Text('Series', style: topMenuStyle,),
-                        Text('Films', style: topMenuStyle),
-                        Text('My List', style: topMenuStyle)
+                        FlatButton(
+                          child: Text('Series', style: topMenuStyle,),
+                        ),
+                        FlatButton(
+                          child: Text('Films', style: topMenuStyle,),
+                        ),
+                        FlatButton(
+                          child: Text('My List', style: topMenuStyle,),
+                        ),
                       ],
                     ),
                   ),
-                  Center(
+                ],
+              ),
+            ),
+                              Center(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
@@ -82,9 +97,6 @@ class HomeView extends StatelessWidget {
                       ],
                     ),
                   )
-                ],
-              ),
-            ),
           ],
       ),
         )
