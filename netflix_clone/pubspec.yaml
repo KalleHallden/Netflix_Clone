@@ -40,6 +40,7 @@ flutter:
   assets:
     - lib/assets/starwars.jpg 
     - lib/assets/starwars1.jpg 
+    - lib/assets/netflix.png
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
 
