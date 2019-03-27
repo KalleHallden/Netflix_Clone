@@ -53,6 +53,8 @@ flutter:
     - lib/assets/10.jpg
     - lib/assets/11.jpg
     - lib/assets/12.jpg
+    - lib/assets/birdboxBanner.jpg
+    
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
 

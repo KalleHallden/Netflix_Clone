@@ -6,6 +6,7 @@ class HomePage extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         primaryColor: Colors.black,
+        brightness: Brightness.dark
       ),
       home: HomeView(),
     );
@@ -13,12 +14,13 @@ class HomePage extends StatelessWidget {
 }
 class HomeView extends StatelessWidget {
 
-  TextStyle topMenuStyle = new TextStyle(fontFamily: 'Avenir next', fontSize: 15, color: Colors.white, fontWeight: FontWeight.w600);
-  TextStyle buttonInfoStyle = new TextStyle(fontFamily: 'Avenir next', fontSize: 10, color: Colors.white, fontWeight: FontWeight.w600);
+  final TextStyle topMenuStyle = new TextStyle(fontFamily: 'Avenir next', fontSize: 20, color: Colors.white, fontWeight: FontWeight.w600);
+  final TextStyle buttonInfoStyle = new TextStyle(fontFamily: 'Avenir next', fontSize: 10, color: Colors.white, fontWeight: FontWeight.w600);
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
+    return new Material(
+      child: Container(
         // color: Colors.red,
         child: Center(
           child: ListView(
@@ -82,9 +84,9 @@ class HomeView extends StatelessWidget {
                           child: Row(
                             children: <Widget>[
                               Icon(
-                                Icons.play_arrow
+                                Icons.play_arrow, color: Colors.black,
                               ),
-                              Text("Play")
+                              Text("Play", style: TextStyle(color: Colors.black),)
                             ],
                           ),
                           onPressed: () {
@@ -106,10 +108,12 @@ class HomeView extends StatelessWidget {
                     ),
                   ),
                   makePopularWidget("Popular on Netflix"),
-                  makePopularWidget("Trending Now")
+                  makePopularWidget("Trending Now"),
+                  makeContinueWatching("Continue Watching for Kalle")
           ],
       ),
         )
+    ),
     );
   }
 
@@ -140,6 +144,35 @@ class HomeView extends StatelessWidget {
       ),
     );
   }
+
+    Widget makeContinueWatching(String title) {
+    return new Container(
+      padding: EdgeInsets.only(left: 5, right: 5),
+      height: 220,
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text(title, style: topMenuStyle),
+              ]
+            ),
+          ),
+          Container(
+            height: 200,
+            child: ListView(
+              padding: EdgeInsets.all(3),
+              scrollDirection: Axis.horizontal,
+              //shrinkWrap: true,
+              children: makeContinueContainers()
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
   int counter = 0;
   List<Widget> makeContainers() {
     List<Container> movieList = [];
@@ -153,6 +186,61 @@ class HomeView extends StatelessWidget {
           image: AssetImage("lib/assets/" + counter.toString() + ".jpg"),
         ),
       ));
+      if (counter == 12) {
+        counter = 0;
+      }
+    }
+    return movieList;
+  }
+
+    List<Widget> makeContinueContainers() {
+    List<Container> movieList = [];
+    for (int i = 0; i < 6; i++) {
+      counter++;
+      movieList.add(new Container(
+        padding: EdgeInsets.all(2),
+        height: 200,
+        
+        child: Column(
+          children: <Widget>[
+          Container(
+            height: 140,
+            width: 100,
+            decoration: new BoxDecoration(
+              image: new DecorationImage(
+                image: new AssetImage("lib/assets/" + counter.toString() + ".jpg"),
+                  fit: BoxFit.fitHeight
+                ),
+              ),
+              child: Center(
+                child: FlatButton(
+                  child: Icon(Icons.play_circle_outline, size: 70,),
+                  onPressed: () {},
+                )
+              ), 
+          ),
+        Container(
+          height: 30,
+          margin: EdgeInsets.all(3),
+          padding: EdgeInsets.only(left: 10, right: 10),
+          color: Colors.black,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(right:25),
+                child: Text('S1:E' + i.toString(), style: TextStyle(color: Color(0xffc1c1c1)),),
+              ),
+              Icon(Icons.info, size: 15,color: Color(0xffc1c1c1))
+            ],
+          ),
+        )
+          ],
+        )
+      ));
+      if (counter == 12) {
+        counter = 0;
+      }
     }
     return movieList;
   }
